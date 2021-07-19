@@ -5,6 +5,21 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  List<String> tareas = [
+    'Tarea 1',
+    'dev',
+    'netflais',
+    'dev',
+    'netflais',
+    'dev',
+    'netflais',
+    'dev',
+    'netflais',
+    'dev',
+    'netflais',
+    'dev',
+    'netflais',
+  ];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,7 +29,7 @@ class MyApp extends StatelessWidget {
           title: Text('Hola'),
         ),
         body: Column(
-          children: <Tarea>[Tarea('Primera tarea'), Tarea('Segunda tarea')],
+          children: tareas.map((elem) => Tarea(elem)).toList(),
         ),
         floatingActionButton: FloatingActionButton(
             child: Icon(Icons.add),
@@ -34,7 +49,7 @@ class Tarea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(child: Text(tarea));
+    return Card(child: Center(child: Text(tarea)));
     throw UnimplementedError();
   }
 }
