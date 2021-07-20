@@ -43,8 +43,16 @@ class StateMiApp extends State<MyApp> {
         appBar: AppBar(
           title: Text('Hola'),
         ),
-        body: Column(
-          children: tareas.map((elem) => Tarea(elem)).toList(),
+        body: Container(
+          height: 50.0,
+          child: ListView.builder(
+              //itemCount: tareas.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, position) {
+                return Tarea((position + 1).toString());
+              }
+              //children: tareas.map((elem) => Tarea(elem)).toList(),
+              ),
         ),
         floatingActionButton: FloatingActionButton(
             child: Icon(Icons.add),
@@ -54,6 +62,29 @@ class StateMiApp extends State<MyApp> {
               });
             }),
       ),
+    );
+  }
+}
+
+// ignore: must_be_immutable
+class Tarea extends StatelessWidget {
+  String tarea = '';
+
+  Tarea(this.tarea);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      child: Card(child: Center(child: Text(tarea))),
+      onTap: () {
+        print('Click en la tarea $tarea');
+      },
+      onDoubleTap: () {
+        print('Doble click en la tarea $tarea');
+      },
+      onLongPress: () {
+        print('Click largo en la tarea $tarea');
+      },
     );
   }
 }
@@ -96,14 +127,4 @@ class StateMiApp extends State<MyApp> {
 //   }
 // }
 
-// ignore: must_be_immutable
-class Tarea extends StatelessWidget {
-  String tarea = '';
 
-  Tarea(this.tarea);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(child: Center(child: Text(tarea)));
-  }
-}
